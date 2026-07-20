@@ -16,6 +16,12 @@ const defaultServices = [
     desc: "Assistência especializada em máquinas de lavar roupas e sistemas Lava e Seca Inverter. Técnicos treinados em placas eletrônicas e mecânica de modelos Samsung, LG, Brastemp e Electrolux. Atendimento em domicílio.",
     path: "/lava-e-seca",
   },
+  {
+    icon: WashingMachine,
+    title: "Conserto de Lava-louças",
+    desc: "Instalação, manutenção preventiva e conserto de lava-louças das principais marcas. Diagnóstico rápido, peças de reposição originais e técnicos qualificados. Atendimento a domicílio.",
+    path: "/lava-loucas",
+  },
 ];
 
 const geladeiraServices = [
@@ -66,6 +72,30 @@ const lavaESecaServices = [
   },
 ];
 
+const lavaLoucasServices = [
+  {
+    icon: WashingMachine,
+    title: "Instalação e Conserto",
+    desc: "Reparo de sistemas de lavagem de pratos das principais marcas: Brastemp, Electrolux, Consul, Samsung e LG. Solucionamos problemas de escoamento e limpeza.",
+    extra:
+      "Se sua lava-louças não está limpando direito os pratos ou apresenta vazamento de água, resolvemos o problema no local com garantia e agilidade.",
+  },
+  {
+    icon: Zap,
+    title: "Resistência e Aquecimento",
+    desc: "Substituição de resistências de aquecimento de água danificadas, termostatos e sensores de temperatura defeituosos.",
+    extra:
+      "Garantimos água na temperatura correta para a higienização completa das suas louças, eliminando gordura e resíduos de forma eficaz.",
+  },
+  {
+    icon: Cpu,
+    title: "Placas e Bomba de Circulação",
+    desc: "Manutenção e troca de bombas de circulação, pressostatos, válvulas de entrada de água e reparo em placas de potência eletrônica.",
+    extra:
+      "Diagnósticos eletrônicos e troca de componentes originais no próprio domicílio com termo de garantia por escrito em Recife.",
+  },
+];
+
 const cardVariants = {
   hidden: { opacity: 0, y: 20 },
   visible: (i: number) => ({
@@ -76,7 +106,7 @@ const cardVariants = {
 };
 
 interface ServicesSectionProps {
-  focusedService?: "geladeira" | "lava-e-seca" | "default";
+  focusedService?: "geladeira" | "lava-e-seca" | "lava-loucas" | "default";
 }
 
 const ServicesSection = ({ focusedService = "default" }: ServicesSectionProps) => {
@@ -85,6 +115,8 @@ const ServicesSection = ({ focusedService = "default" }: ServicesSectionProps) =
       ? geladeiraServices
       : focusedService === "lava-e-seca"
       ? lavaESecaServices
+      : focusedService === "lava-loucas"
+      ? lavaLoucasServices
       : defaultServices;
 
   const sectionTitle =
@@ -92,6 +124,8 @@ const ServicesSection = ({ focusedService = "default" }: ServicesSectionProps) =
       ? "Serviços em Refrigeração"
       : focusedService === "lava-e-seca"
       ? "Serviços em Lavadoras"
+      : focusedService === "lava-loucas"
+      ? "Serviços em Lava-louças"
       : "O Que Consertamos";
 
   return (
@@ -104,11 +138,7 @@ const ServicesSection = ({ focusedService = "default" }: ServicesSectionProps) =
           </p>
         </div>
 
-        <div className={`grid grid-cols-1 gap-6 max-w-5xl mx-auto ${
-          focusedService === "default" 
-            ? "md:grid-cols-2" 
-            : "md:grid-cols-3"
-        }`}>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
           {currentServices.map((s: any, i) => (
             <motion.div
               key={s.title}

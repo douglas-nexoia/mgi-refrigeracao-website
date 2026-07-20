@@ -10,6 +10,7 @@ import { Analytics } from "@vercel/analytics/react";
 const LazyIndex = lazy(() => import("./pages/Index"));
 const LazyGeladeira = lazy(() => import("./pages/Geladeira"));
 const LazyLavaESeca = lazy(() => import("./pages/LavaESeca"));
+const LazyLavaLoucas = lazy(() => import("./pages/LavaLoucas"));
 const LazyNotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
@@ -32,6 +33,7 @@ const App = () => (
             <Route path="/" element={<LazyIndex />} />
             <Route path="/geladeira" element={<LazyGeladeira />} />
             <Route path="/lava-e-seca" element={<LazyLavaESeca />} />
+            <Route path="/lava-loucas" element={<LazyLavaLoucas />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<LazyNotFound />} />
           </Routes>
